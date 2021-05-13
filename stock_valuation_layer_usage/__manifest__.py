@@ -18,5 +18,6 @@
         "views/stock_valuation_layer_views.xml",
         "views/stock_move_views.xml",
     ],
+    "post_init_hook": "post_init_hook",
     "installable": True,
 }
