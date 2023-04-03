@@ -3,7 +3,7 @@
 from odoo.addons.stock.models.stock_move import StockMove
 from odoo import fields, _
 from odoo.exceptions import UserError
-from odoo.tools.float_utils import float_compare
+from odoo.tools.float_utils import float_compare, float_is_zero
 
 
 def post_load_hook():
@@ -33,9 +33,7 @@ def post_load_hook():
         for move in moves:
             if move.state == 'cancel' or move.quantity_done <= 0:
                 continue
-            # extra move will not be merged in mrp
-            if not move.picking_id:
-                moves_todo |= move
+
             moves_todo |= move._create_extra_move()
 
         # Split moves where necessary and move quants
@@ -72,7 +70,11 @@ def post_load_hook():
         for result_package in moves_todo \
             .mapped('move_line_ids.result_package_id').filtered(
                 lambda p: p.quant_ids and len(p.quant_ids) > 1):
-            if len(result_package.quant_ids.mapped('location_id')) > 1:
+            if len(result_package.quant_ids.filtered(
+                lambda q: not float_is_zero(
+                    abs(q.quantity) + abs(q.reserved_quantity),
+                    precision_rounding=q.product_uom_id.rounding)
+            ).mapped('location_id')) > 1:
                 raise UserError(_(
                     'You cannot move the same package content more '
                     'than once in the same transfer or split the same '
