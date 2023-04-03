@@ -22,7 +22,7 @@ def post_load_hook():
         no_reserved_quantities = \
             self._validate_get_no_reserved_quantities()
         # END OF PATCH #
-        if no_reserved_quantities and no_quantities_done:
+        if no_reserved_quantities and no_quantities_done and not self.picking_type_id.code == 'incoming':
             raise UserError(_(
                 'You cannot validate a transfer if no quantites '
                 'are reserved nor done. To force the transfer, switch '
