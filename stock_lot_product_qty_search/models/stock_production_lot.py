@@ -9,14 +9,14 @@ from odoo.addons.stock.models.product import OPERATORS
 
 
 class ProductionLot(models.Model):
-    _inherit = "stock.production.lot"
+    _inherit = "stock.lot"
 
     product_qty = fields.Float(search="_search_product_qty")
 
     def _search_product_qty(self, operator, value):
         if operator not in ("<", ">", "=", "!=", "<=", ">="):
             raise UserError(_("Invalid domain operator %s", operator))
-        if not isinstance(value, (float, int)):
+        if not isinstance(value, (float | int)):
             raise UserError(_("Invalid domain right operand %s", value))
         # Check if we should include lots with a quantity of 0 in the results
         uom_precision = self.env["decimal.precision"].precision_get(
@@ -48,7 +48,6 @@ class ProductionLot(models.Model):
             [("lot_id", "!=", False), ("location_id", "in", quants_locations.ids)],
             ["lot_id", "quantity"],
             ["lot_id"],
-            orderby="id",
         )
         lot_ids_with_quantity = {
             group["lot_id"][0]: group["quantity"] for group in grouped_quants
