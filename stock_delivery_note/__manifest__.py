@@ -11,5 +11,5 @@
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/stock-logistics-workflow",
     "depends": ["stock", "stock_delivery"],
-    "data": ["views/stock_picking.xml", "reports/report_picking.xml"],
+    "data": ["views/stock_picking.xml"],
 }
