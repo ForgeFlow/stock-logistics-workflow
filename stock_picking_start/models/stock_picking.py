@@ -47,9 +47,7 @@ class StockPicking(models.Model):
     @api.depends("printed", "state")
     def _compute_started(self):
         for record in self:
-            started = record.state == "assigned" and record.printed
-            if record.started != started:
-                record.started = started
+            record.started = record.state == "assigned" and record.printed
 
     def _inverse_started(self):
         for record in self:
@@ -116,8 +114,8 @@ class StockPicking(models.Model):
 
     def action_start(self):
         self._check_action_start_allowed()
-        self.filtered(lambda r: not r.started).write({"started": True})
+        self.write({"started": True})
 
     def action_cancel_start(self):
         self._check_action_cancel_start_allowed()
-        self.filtered("started").write({"started": False})
+        self.write({"started": False})

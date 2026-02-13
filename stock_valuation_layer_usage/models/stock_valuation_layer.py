@@ -81,8 +81,8 @@ class StockValuationLayer(models.Model):
     def create(self, values):
         recs = self.browse()
         for val in values:
-            rec = super(StockValuationLayer, self).create([val])
-            taken_data = rec.env.context.get("taken_data", [{}])[0]
+            taken_data = "taken_data" in val.keys() and val.pop("taken_data") or {}
+            rec = super(StockValuationLayer, self).create(val)
             # There are cases in which the transformation
             # comes from a return process,
             # such as sales returns or production unbuilds.

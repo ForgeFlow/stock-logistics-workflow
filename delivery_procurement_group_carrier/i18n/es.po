@@ -27,11 +27,6 @@ msgid "Procurement Group"
 msgstr "Grupo de Adquisiciones"
 
 #. module: delivery_procurement_group_carrier
-#: model:ir.model,name:delivery_procurement_group_carrier.model_stock_return_picking
-msgid "Return Picking"
-msgstr ""
-
-#. module: delivery_procurement_group_carrier
 #: model:ir.model,name:delivery_procurement_group_carrier.model_sale_order
 msgid "Sales Order"
 msgstr "Orden de Ventas"
@@ -44,9 +39,4 @@ msgstr "Línea de Orden de Ventas"
 #. module: delivery_procurement_group_carrier
 #: model:ir.model,name:delivery_procurement_group_carrier.model_stock_move
 msgid "Stock Move"
-msgstr ""
-
-#. module: delivery_procurement_group_carrier
-#: model:ir.model,name:delivery_procurement_group_carrier.model_stock_picking
-msgid "Transfer"
 msgstr ""

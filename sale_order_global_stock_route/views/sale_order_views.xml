@@ -10,6 +10,7 @@
                      disappear  in v13. So we use the same group that route_id
                      field in sale order lines.
                  -->
+                <field name="route_id" groups="stock.group_adv_location" />
                 <field
                     name="route_id"
                     attrs="{'readonly': [('state', 'in', ('sale', 'done', 'cancel'))]}"

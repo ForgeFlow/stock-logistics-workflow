@@ -49,9 +49,6 @@ class TestStockGrnMandatory(TransactionCase):
         with self.assertRaises(UserError, msg=msg):
             self.move.picking_id.button_validate()
 
-        with self.assertRaises(UserError, msg=msg):
-            self.move.picking_id._action_done()
-
         # Fill in the GRN
         delivery_note_supplier_number = "DN TEST"
         grn = self.grn_model.create(

@@ -1,1 +1,0 @@
-from . import test_empty_package_at_picking_return

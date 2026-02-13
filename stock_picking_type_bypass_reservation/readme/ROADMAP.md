@@ -1,1 +1,0 @@
--   Pickings of Operations Types with Bypass Reservations will be reserved on picking/move Confirmation even if the Operation Type Reservation Method is not "At Confirmation".

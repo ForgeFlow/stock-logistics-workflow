@@ -13,6 +13,7 @@ class ProductProduct(models.Model):
         value_taken_on_candidate,
         candidate_vals,
     ):
+        self.ensure_one()
         return candidate_vals
 
     def _run_fifo_vacuum_prepare_candidate_update(
@@ -29,4 +30,5 @@ class ProductProduct(models.Model):
         return self._get_fifo_candidates_domain(company)
 
     def _price_updateable(self, new_standard_price=False):
+        self.ensure_one()
         return new_standard_price and self.cost_method == "fifo"

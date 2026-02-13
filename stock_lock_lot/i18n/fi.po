@@ -8,135 +8,132 @@ msgstr ""
 "Project-Id-Version: stock-logistics-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 02:51+0000\n"
-"PO-Revision-Date: 2024-12-19 16:06+0000\n"
-"Last-Translator: Ossi Mantylahti <ossi.mantylahti@terracolligo.com>\n"
-"Language-Team: Finnish (http://www.transifex.com/oca/"
-"OCA-stock-logistics-workflow-8-0/language/fi/)\n"
+"PO-Revision-Date: 2017-05-30 18:20+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/oca/OCA-stock-logistics-"
+"workflow-8-0/language/fi/)\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_needaction
 msgid "Action Needed"
-msgstr "Toimenpide tarvitaan"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_location__allow_locked
 msgid "Allow Locked Lots/Serial Numbers"
-msgstr "Salli lukitut erät/sarjanumerot"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:res.groups,name:stock_lock_lot.group_lock_lot
 msgid "Allow to block/unblock Serial Numbers/Lots"
-msgstr "Mahdollistaa sarjanumeroiden tai erien estämisen tai eston poistamisen"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_attachment_count
 msgid "Attachment Count"
-msgstr "Liitteiden määrä"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_product_category__lot_default_locked
 msgid "Block new Serial Numbers/lots"
-msgstr "Uusien sarjanumeroiden tai erien estäminen"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__locked
 #: model_terms:ir.ui.view,arch_db:stock_lock_lot.search_product_lot_filter
 msgid "Blocked"
-msgstr "Estetty"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_follower_ids
 msgid "Followers"
-msgstr "Seuraajat"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seuraajat (partnerit)"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__has_message
 msgid "Has Message"
-msgstr "Sisältää viestin"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,help:stock_lock_lot.field_product_category__lot_default_locked
 msgid ""
 "If checked, future Serial Numbers/lots will be created blocked by default"
 msgstr ""
-"Jos valitaan, tulevat sarjanumerot tai erät luodaan oletusarvoisesti "
-"estettyinä"
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,help:stock_lock_lot.field_stock_lot__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Jos valittu, uudet viestit vaativat huomiota."
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,help:stock_lock_lot.field_stock_lot__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr "Jos valittuna, joissakin viesteissä on toimitusvirhe."
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model,name:stock_lock_lot.model_stock_location
 msgid "Inventory Locations"
-msgstr "Varaston sijainnit"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_is_follower
 msgid "Is Follower"
-msgstr "On seuraaja"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model_terms:ir.ui.view,arch_db:stock_lock_lot.search_product_lot_filter
 msgid "Locked"
-msgstr "Lukittu"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model,name:stock_lock_lot.model_stock_lot
 msgid "Lot/Serial"
-msgstr "Erä- tai sarjanumero"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_main_attachment_id
 msgid "Main Attachment"
-msgstr "Pääliite"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_has_error
 msgid "Message Delivery error"
-msgstr "Viestin toimitusvirhe"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_ids
 msgid "Messages"
-msgstr "Viestit"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_needaction_counter
 msgid "Number of Actions"
-msgstr "Toimenpiteiden määrä"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__message_has_error_counter
 msgid "Number of errors"
-msgstr "Virheiden määrä"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,help:stock_lock_lot.field_stock_lot__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr "Toimintaa vaativien viestien määrä"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,help:stock_lock_lot.field_stock_lot__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr "Toimitusvirheitä sisältävien viestien määrä"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__product_id
@@ -146,24 +143,24 @@ msgstr "Tuote"
 #. module: stock_lock_lot
 #: model:ir.model,name:stock_lock_lot.model_product_category
 msgid "Product Category"
-msgstr "Tuotekategoria"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model,name:stock_lock_lot.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr "Tuotteiden siirrot (Varaston siirtorivi)"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:mail.message.subtype,description:stock_lock_lot.mt_lock_lot
 #: model:mail.message.subtype,name:stock_lock_lot.mt_lock_lot
 msgid "Serial Number/lot blocked"
-msgstr "Sarjanumero tai erä on estetty"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:mail.message.subtype,description:stock_lock_lot.mt_unlock_lot
 #: model:mail.message.subtype,name:stock_lock_lot.mt_unlock_lot
 msgid "Serial Number/lot unblocked"
-msgstr "Sarjanumeron tai erän esto on poistettu"
+msgstr ""
 
 #. module: stock_lock_lot
 #. odoo-python
@@ -173,18 +170,16 @@ msgid ""
 "The following lots/serial number is blocked and cannot be moved:\n"
 "%s"
 msgstr ""
-"Seuraavat erät tai sarjanumerot on estetty, eikä niitä voi siirtää:\n"
-"%s"
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,field_description:stock_lock_lot.field_stock_lot__website_message_ids
 msgid "Website Messages"
-msgstr "Verkkosivun viesti"
+msgstr ""
 
 #. module: stock_lock_lot
 #: model:ir.model.fields,help:stock_lock_lot.field_stock_lot__website_message_ids
 msgid "Website communication history"
-msgstr "Verkkosivun viestihistoria"
+msgstr ""
 
 #. module: stock_lock_lot
 #. odoo-python
@@ -193,7 +188,6 @@ msgstr "Verkkosivun viestihistoria"
 #, python-format
 msgid "You are not allowed to block/unblock Serial Numbers/Lots"
 msgstr ""
-"Sinulla ei ole oikeutta estää tai poistaa estoa sarjanumerolta tai erältä"
 
 #. module: stock_lock_lot
 #. odoo-python
@@ -203,8 +197,6 @@ msgid ""
 "You are not allowed to block/unblock, there are reserved quantities for "
 "these Serial Numbers/Lots"
 msgstr ""
-"Et voi estää tai poistaa estoja, koska näille sarjanumeroille tai erille on "
-"varattu määrät"
 
 #~ msgid "Display Name"
 #~ msgstr "Nimi"

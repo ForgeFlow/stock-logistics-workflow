@@ -9,145 +9,144 @@ msgstr ""
 "Project-Id-Version: stock-logistics-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 09:53+0000\n"
-"PO-Revision-Date: 2025-02-20 08:48+0000\n"
-"Last-Translator: İsmail Çağan Yılmaz <ismail.cagan.yilmaz@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/"
-"OCA-stock-logistics-workflow-8-0/language/tr/)\n"
+"PO-Revision-Date: 2017-01-16 19:30+0000\n"
+"Last-Translator: Ahmet Altinisik <aaltinisik@altinkaya.com.tr>\n"
+"Language-Team: Turkish (http://www.transifex.com/oca/OCA-stock-logistics-"
+"workflow-8-0/language/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.6.2\n"
 
 #. module: stock_split_picking
 #: model_terms:ir.ui.view,arch_db:stock_split_picking.view_stock_split_picking
 msgid "Cancel"
-msgstr "Iptal Et"
+msgstr ""
 
 #. module: stock_split_picking
 #. odoo-python
-#: code:addons/stock_split_picking/exceptions.py:0
+#: code:addons/stock_split_picking/models/stock_picking.py:0
 #, python-format
-msgid "Cannot split off all moves from picking %(name)s"
-msgstr "%(name)s sevkinin tüm hareketleri bölünemez"
+msgid "Cannot split off all moves from picking %s"
+msgstr ""
 
 #. module: stock_split_picking
 #. odoo-python
-#: code:addons/stock_split_picking/exceptions.py:0
+#: code:addons/stock_split_picking/models/stock_picking.py:0
 #, python-format
-msgid "Cannot split picking %(name)s in state %(state)s"
-msgstr "%(name)s sevki %(state)s durumunda bölünemiyor"
+msgid "Cannot split picking {name} in state {state}"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__create_uid
 msgid "Created by"
-msgstr "Tarafından oluşturuldu"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__create_date
 msgid "Created on"
-msgstr "Oluşturulma tarihi"
+msgstr ""
 
 #. module: stock_split_picking
 #: model_terms:ir.ui.view,arch_db:stock_split_picking.view_stock_split_picking
 msgid "Date"
-msgstr "Tarih"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__display_name
 msgid "Display Name"
-msgstr "Görünür Isim"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields.selection,name:stock_split_picking.selection__stock_split_picking__mode__done
 msgid "Done quantities"
-msgstr "Biten miktarlar"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking____last_update
 msgid "Last Modified on"
-msgstr "Son Değiştirilme tarihi"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__write_uid
 msgid "Last Updated by"
-msgstr "Son Güncelleyen"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__write_date
 msgid "Last Updated on"
-msgstr "Son Güncelleme tarihi"
+msgstr ""
 
 #. module: stock_split_picking
 #. odoo-python
 #: code:addons/stock_split_picking/models/stock_picking.py:0
 #, python-format
 msgid "Mark as todo this picking please."
-msgstr "Lütfen bu sevki yapılacak olarak işaretleyin."
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__mode
 msgid "Mode"
-msgstr "Mod"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__move_ids
 msgid "Move"
-msgstr "Hareket"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields.selection,name:stock_split_picking.selection__stock_split_picking__mode__move
 msgid "One picking per move"
-msgstr "Hareket başına bir sevk"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields,field_description:stock_split_picking.field_stock_split_picking__picking_ids
 msgid "Picking"
-msgstr "Sevkiyat"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model.fields.selection,name:stock_split_picking.selection__stock_split_picking__mode__selection
 msgid "Select move lines to split off"
-msgstr "Bölünecek hareket satırlarını seçin"
+msgstr ""
 
 #. module: stock_split_picking
 #: model_terms:ir.ui.view,arch_db:stock_split_picking.view_picking_form
 #: model_terms:ir.ui.view,arch_db:stock_split_picking.view_stock_split_picking
 msgid "Split"
-msgstr "Bölme"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model,name:stock_split_picking.model_stock_split_picking
 msgid "Split a picking"
-msgstr "Bir sevki bölün"
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.actions.act_window,name:stock_split_picking.action_stock_split_picking
 msgid "Split pickings"
-msgstr "Sevkleri bölün"
+msgstr ""
 
 #. module: stock_split_picking
 #. odoo-python
 #: code:addons/stock_split_picking/models/stock_picking.py:0
 #, python-format
 msgid "The backorder %s has been created."
-msgstr "%s ön siparişi oluşturuldu."
+msgstr ""
 
 #. module: stock_split_picking
 #: model:ir.model,name:stock_split_picking.model_stock_picking
 msgid "Transfer"
-msgstr "Transfer"
+msgstr ""
 
 #. module: stock_split_picking
 #: model_terms:ir.ui.view,arch_db:stock_split_picking.view_stock_split_picking
 msgid "Unit of Measure"
-msgstr "Ölçü Birimi"
+msgstr ""
 
 #. module: stock_split_picking
 #. odoo-python
@@ -155,12 +154,12 @@ msgstr "Ölçü Birimi"
 #, python-format
 msgid ""
 "You must enter done quantity in order to split your picking in several ones."
-msgstr "Sevkiyat işleminizi bölmek için biten miktarı girmeniz gerekir."
+msgstr ""
 
 #. module: stock_split_picking
 #: model_terms:ir.ui.view,arch_db:stock_split_picking.view_stock_split_picking
 msgid "or"
-msgstr "ya da"
+msgstr ""
 
 #~ msgid "Picking List"
 #~ msgstr "Toplama Listesi"
