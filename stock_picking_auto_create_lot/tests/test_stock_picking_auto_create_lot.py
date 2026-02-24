@@ -204,6 +204,16 @@ class TestStockPickingAutoCreateLot(CommonStockPickingAutoCreateLot, Transaction
         lots = self.picking.move_line_ids.lot_id
         self.assertEqual(len(lots), 2)
 
+    def test_company_disabled_auto_create_lot(self):
+        """When auto_create_lot is disabled at company level, lots are not
+        auto-created and validating the picking raises an error because lots
+        are missing."""
+        self.picking.company_id.auto_create_lot = False
+        self.picking.action_assign()
+        self.picking.action_set_quantities_to_reservation()
+        with self.assertRaises(UserError):
+            self.picking.button_validate()
+
     def _assign_manual_serials(self, moves):
         # Assign manual serials
         moves.picking_id._set_auto_lot()

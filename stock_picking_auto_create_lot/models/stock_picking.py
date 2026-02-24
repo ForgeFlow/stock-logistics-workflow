@@ -27,7 +27,9 @@ class StockPicking(models.Model):
                 ("product_id.categ_id.auto_create_lot", "=", True),
             ]
 
-        pickings = self.filtered(lambda p: p.picking_type_id.auto_create_lot)
+        pickings = self.filtered(
+            lambda p: p.picking_type_id.auto_create_lot and p.company_id.auto_create_lot
+        )
         if not pickings:
             return
         immediate_domain = []
