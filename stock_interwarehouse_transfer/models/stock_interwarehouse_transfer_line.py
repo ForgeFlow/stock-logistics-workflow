@@ -183,6 +183,7 @@ class StockInterwarehouseTransferLine(models.Model):
             "group_id": group.id,
             "origin": transfer.name,
             "company_id": transfer.company_id.id,
+            "partner_id": transfer.warehouse_to_id.partner_id.id,
             "interwh_transfer_line_id": self.id,
         }
         if transfer.scheduled_date:
