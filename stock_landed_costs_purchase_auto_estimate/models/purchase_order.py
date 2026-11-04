@@ -37,10 +37,11 @@ class PurchaseOrder(models.Model):
         }
 
     def _create_picking_with_stock_landed_cost(self, picking):
-        res = super()._create_picking_with_stock_landed_cost(picking)
         # sudo() is needed because only Inventory > Administrator has
         # permissions on stock.landed.cost (see base module)
-        landed_cost = self.sudo().landed_cost_ids[-1]
+        landed_cost = super()._create_picking_with_stock_landed_cost(picking).sudo()
+        if not landed_cost:
+            return landed_cost
         lc_product = self.company_id.estimated_landed_cost_product_id
         company_currency = self.company_id.currency_id
         total_estimate = 0.0
@@ -83,4 +84,5 @@ class PurchaseOrder(models.Model):
         if not landed_cost.cost_lines:
             # if estimate is zero don't keep empty LC
             landed_cost.unlink()
-        return res
+            return self.env["stock.landed.cost"].browse()
+        return landed_cost
