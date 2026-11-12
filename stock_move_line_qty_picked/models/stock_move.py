@@ -2,22 +2,19 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
 from odoo import api, fields, models
-from odoo.tools import float_compare
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
 
-    qty_picked = fields.Float(
-        compute="_compute_qty_picked", digits="Product Unit of Measure"
-    )
+    qty_picked = fields.Float(compute="_compute_qty_picked", digits="Product Unit")
 
     @api.depends(
         "move_line_ids.picked",
-        "move_line_ids.product_uom_id",
+        "move_line_ids.uom_id",
         "move_line_ids.qty_picked",
         "move_line_ids.quantity",
-        "product_uom",
+        "uom_id",
     )
     def _compute_qty_picked(self):
         for move in self:
@@ -35,18 +32,14 @@ class StockMove(models.Model):
         self.ensure_one()
         quantity = 0
         for move_line in self.move_line_ids.filtered("picked"):
-            quantity += move_line.product_uom_id._compute_quantity(
-                move_line.qty_picked, self.product_uom, round=False
+            quantity += move_line.uom_id._compute_quantity(
+                move_line.qty_picked, self.uom_id, round=False
             )
         return quantity
 
     def _action_done(self, cancel_backorder=False):
         for move in self:
             for line in move.move_line_ids:
-                if line.picked and float_compare(
-                    line.qty_picked,
-                    line.quantity,
-                    precision_rounding=line.product_uom_id.rounding,
-                ):
+                if line.picked and line.uom_id.compare(line.qty_picked, line.quantity):
                     line.quantity = line.qty_picked
         return super()._action_done(cancel_backorder=cancel_backorder)

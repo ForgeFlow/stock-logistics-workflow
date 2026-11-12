@@ -2,7 +2,6 @@
 # Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields, models
-from odoo.tools import float_compare
 
 
 class StockMoveLine(models.Model):
@@ -14,7 +13,7 @@ class StockMoveLine(models.Model):
         copy=False,
     )
     qty_picked = fields.Float(
-        inverse="_inverse_qty_picked", copy=False, digits="Product Unit of Measure"
+        inverse="_inverse_qty_picked", copy=False, digits="Product Unit"
     )
 
     def _inverse_picked(self):
@@ -50,11 +49,10 @@ class StockMoveLine(models.Model):
         }
         total_demand = self.move_id.product_uom_qty
         total_reserved = sum(self.move_id.move_line_ids.mapped("quantity"))
-        prec = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        uom = self.uom_id
         if (
-            float_compare(qty, self.quantity, precision_digits=prec) > 0
-            and float_compare(total_reserved + qty, total_demand, precision_digits=prec)
-            <= 0
+            uom.compare(qty, self.quantity) > 0
+            and uom.compare(total_reserved + qty, total_demand) <= 0
         ):
             values["quantity"] = qty
         self.with_context(move_line_pick_qty=True).update(values)
