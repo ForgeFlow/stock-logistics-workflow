@@ -1,9 +1,17 @@
-from odoo import fields, models
-from odoo.tools import float_is_zero
+from odoo import models
 
 
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
+
+    def _get_estimated_cost_percent(self, line):
+        """Indirect cost percentage of the order vendor for the line product."""
+        if line.product_id.cost_method not in ("fifo", "average"):
+            return 0.0
+        supplierinfo = line.product_id.seller_ids.filtered(
+            lambda x, line=line: x.partner_id == line.order_id.partner_id
+        )[:1]
+        return supplierinfo.indirect_cost_percent
 
     def _prepare_estimated_cost_line_vals(self, line, cost_price):
         """Legacy cost line: the purchased product, forced to the stock
@@ -16,6 +24,7 @@ class PurchaseOrder(models.Model):
             ].id,
             "price_unit": cost_price,
             "split_method": line.product_id.split_method_landed_cost or "equal",
+            "estimate": True,
         }
 
     def _prepare_estimated_cost_product_line_vals(self, total):
@@ -34,7 +43,43 @@ class PurchaseOrder(models.Model):
             "name": product.name,
             "price_unit": total,
             "split_method": product.split_method_landed_cost or "by_current_cost_price",
+            "estimate": True,
         }
+
+    def _prepare_estimated_cost_lines_vals(self, moves):
+        """Estimate cost lines for the given receipt moves, each move counting
+        only its own quantity."""
+        self.ensure_one()
+        currency = self.company_id.currency_id
+        lc_product = self.company_id.estimated_landed_cost_product_id
+        estimates = {
+            move: move._get_estimated_landed_cost()
+            for move in moves.filtered(
+                lambda m, order=self: m.purchase_line_id.order_id == order
+            )
+        }
+        estimates = {
+            move: amount
+            for move, amount in estimates.items()
+            if not currency.is_zero(amount)
+        }
+        if not estimates:
+            return []
+        if lc_product:
+            return [
+                self._prepare_estimated_cost_product_line_vals(
+                    currency.round(sum(estimates.values()))
+                )
+            ]
+        return [
+            dict(
+                self._prepare_estimated_cost_line_vals(
+                    move.purchase_line_id, currency.round(amount)
+                ),
+                estimate_move_id=move.id,
+            )
+            for move, amount in estimates.items()
+        ]
 
     def _create_picking_with_stock_landed_cost(self, picking):
         # sudo() is needed because only Inventory > Administrator has
@@ -42,45 +87,9 @@ class PurchaseOrder(models.Model):
         landed_cost = super()._create_picking_with_stock_landed_cost(picking).sudo()
         if not landed_cost:
             return landed_cost
-        lc_product = self.company_id.estimated_landed_cost_product_id
-        company_currency = self.company_id.currency_id
-        total_estimate = 0.0
-        # we add the cost lines based on estimates
-        for line in picking.mapped("move_ids.purchase_line_id"):
-            if line.order_id.partner_id not in line.product_id.seller_ids.mapped(
-                "partner_id"
-            ):
-                continue
-            # estimated cost is based on the po price and the estimated indirect cost
-            # in the supplierinfo
-            supplierinfo = line.product_id.seller_ids.filtered(
-                lambda x, line=line: x.partner_id == line.order_id.partner_id
-            )
-            if not supplierinfo:
-                continue
-            supplierinfo = supplierinfo[0]
-            if line.product_id.cost_method not in ("fifo", "average"):
-                continue
-            cost_price = line.currency_id._convert(
-                line.price_subtotal * supplierinfo.indirect_cost_percent / 100,
-                company_currency,
-                line.company_id,
-                line.date_planned or fields.Date.context_today(line),
-            )
-            if float_is_zero(cost_price, precision_rounding=company_currency.rounding):
-                continue
-            if lc_product:
-                total_estimate += cost_price
-            else:
-                landed_cost.cost_lines = [
-                    (0, 0, self._prepare_estimated_cost_line_vals(line, cost_price))
-                ]
-        if lc_product and not float_is_zero(
-            total_estimate, precision_rounding=company_currency.rounding
-        ):
-            landed_cost.cost_lines = [
-                (0, 0, self._prepare_estimated_cost_product_line_vals(total_estimate))
-            ]
+        vals_list = self._prepare_estimated_cost_lines_vals(picking.move_ids)
+        if vals_list:
+            landed_cost.cost_lines = [(0, 0, vals) for vals in vals_list]
         if not landed_cost.cost_lines:
             # if estimate is zero don't keep empty LC
             landed_cost.unlink()

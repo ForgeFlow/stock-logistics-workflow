@@ -114,3 +114,41 @@ class TestLandedCostEstimateProduct(TestPurchaseStockLandedCostEstimateBase):
         self.assertEqual(line.product_id, self.lc_product)
         # 10% of 10.00 + 10% of 20.00
         self.assertAlmostEqual(line.price_unit, 3.0)
+
+    def test_estimate_allocated_per_move_percentage(self):
+        other = self.env["product.product"].create(
+            {
+                "name": "Producto Storable 3",
+                "type": "consu",
+                "is_storable": True,
+                "categ_id": self.category.id,
+            }
+        )
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.partner.id,
+                "product_id": other.id,
+                "price": 20,
+                "indirect_cost_percent": 20,
+            }
+        )
+        self.env["purchase.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": other.id,
+                "product_qty": 1,
+                "price_unit": 20,
+            }
+        )
+        self.order.button_confirm()
+        self._action_picking_validate(self.order.picking_ids)
+        landed_cost = self.order.landed_cost_ids
+        # 10% of 10.00 + 20% of 20.00
+        self.assertAlmostEqual(landed_cost.amount_total, 5.0)
+        additional = {
+            line.product_id: line.additional_landed_cost
+            for line in landed_cost.valuation_adjustment_lines
+        }
+        # each move gets its own estimate, not a split by cost price
+        self.assertAlmostEqual(additional[self.product_storable], 1.0)
+        self.assertAlmostEqual(additional[other], 4.0)

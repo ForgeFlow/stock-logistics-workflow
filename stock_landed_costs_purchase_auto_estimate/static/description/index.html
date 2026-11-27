@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Stock Landed Costs Purchase Auto Estimate</title>
 <style type="text/css">
 
 /*
@@ -413,6 +413,11 @@ of the entry hit the stock valuation account.</p>
 <li>Follow instructions in the module stock_landed_costs_purchase_auto</li>
 <li>The estimated landed cost related to the purchase order will be added
 based on the indictect cost percentage of the supplierinfo</li>
+<li>The estimate is recomputed when the receipt is validated, from the
+quantities actually received: a partial receipt is charged for what
+it received, and its backorder gets its own estimate for the rest.
+Each received move carries the estimate of its own vendor percentage.
+Cost lines added manually to the landed cost are kept.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
