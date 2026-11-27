@@ -3,7 +3,7 @@
 
 {
     "name": "Stock Landed Costs Purchase Auto Estimate",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Inventory",
     "website": "https://github.com/OCA/stock-logistics-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",

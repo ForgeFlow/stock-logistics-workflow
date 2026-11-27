@@ -15,9 +15,10 @@ class StockPicking(models.Model):
 
     def button_validate(self):
         res = super().button_validate()
-        self.sudo().stock_landed_costs_ids.filtered(
+        done_pickings = self.filtered(lambda p: p.state == "done")
+        done_pickings.sudo().stock_landed_costs_ids.filtered(
             lambda x: x.state == "draft"
-        ).button_validate()
+        )._refresh_estimate().button_validate()
         return res
 
     def action_cancel(self):
